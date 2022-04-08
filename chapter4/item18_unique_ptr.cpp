@@ -5,6 +5,7 @@
 
 class Investment{
 public:
+    Investment(bool m) : makeMoney(m) {}
     bool makeMoney;
 };
 
@@ -36,19 +37,30 @@ makeInvestment(Ts&&... params)
     std::unique_ptr<Investment, decltype(delInvmt)> // ptr to be
     pInv(nullptr, delInvmt);
 }
-    
+
+
+Investment* old_style_factory(bool makeMoney){
+
+    Investment* myobj = new Investment(makeMoney);
+
+    return myobj;
+}
+
+auto factory_wrapper(bool makeMoney){
+
+    std::unique_ptr<Investment> p;
+    p.reset(old_style_factory(makeMoney);
+    return p;
+}
+
 int main(){
     std::unique_ptr<Investment> pInvest1 = makeInvestment();
     std::unique_ptr<Investment, decltype(delInvmt)> pInvest2 = makeInvestment();
     auto pInvest3 = makeInvestment();
 
+    auto pf = factory_wrapper(true);
+
 }
 
 
-float* old_style_factory(size_t n){
-
-    float* myobj = new float[n];
-
-    return myobj;
-}
 
