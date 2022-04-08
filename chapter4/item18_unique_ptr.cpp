@@ -28,12 +28,7 @@ template<typename... Ts>
 std::unique_ptr<Investment, decltype(delInvmt)>
 makeInvestment(Ts&&... params)
 {
-// custom
-// deleter
-// (a lambda
-// expression)
-// revised
-// return type
+// custom deleter (a lambda expression)
     std::unique_ptr<Investment, decltype(delInvmt)> // ptr to be
     pInv(nullptr, delInvmt);
 }
@@ -49,7 +44,7 @@ Investment* old_style_factory(bool makeMoney){
 auto factory_wrapper(bool makeMoney){
 
     std::unique_ptr<Investment> p;
-    p.reset(old_style_factory(makeMoney);
+    p.reset(old_style_factory(makeMoney));
     return p;
 }
 
@@ -58,7 +53,8 @@ int main(){
     std::unique_ptr<Investment, decltype(delInvmt)> pInvest2 = makeInvestment();
     auto pInvest3 = makeInvestment();
 
-    auto pf = factory_wrapper(true);
+    auto pf = old_style_factory(true);
+    auto pf2 = factory_wrapper(true);
 
 }
 
