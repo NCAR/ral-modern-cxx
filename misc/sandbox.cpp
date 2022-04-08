@@ -22,7 +22,6 @@ widget& make_widget_ref(){
     return widget();
 }
 
-
 int main(){
 
     widget w1 = make_widget();
