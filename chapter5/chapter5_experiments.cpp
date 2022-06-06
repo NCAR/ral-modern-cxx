@@ -7,4 +7,16 @@
 
 #include <vector>
 
-std::vector<int> v1 = {1,2,3,4,5};
+int main()
+{
+    std::vector<int> v1 = {1, 2, 3, 4, 5};
+    std::vector<int> v2{};
+
+    v2 = v1;
+
+    v2 = std::move(v1);
+
+    // This is invalid!  Clion (Clang-tidy) warns me.
+    v1[3] = 5;
+
+}

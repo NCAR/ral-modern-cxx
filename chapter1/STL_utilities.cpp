@@ -12,7 +12,7 @@
 template <typename T>
 void printVec(const std::string& name, std::vector<T> vec){
     std::cerr << name << ": ";
-    for (auto e: vec)
+    for (const auto& e: vec)
         std::cerr << e << ' ';
     std::cerr << std::endl;
 }
